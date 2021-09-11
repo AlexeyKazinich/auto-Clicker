@@ -1,7 +1,6 @@
 F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\bin\Debug\ClickyApp.exe.config
 F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\bin\Debug\ClickyApp.exe
 F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\bin\Debug\ClickyApp.pdb
-F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\obj\Debug\ClickyApp.csprojAssemblyReference.cache
 F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\obj\Debug\ClickyApp.Form1.resources
 F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\obj\Debug\ClickyApp.Properties.Resources.resources
 F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\obj\Debug\ClickyApp.csproj.GenerateResource.cache

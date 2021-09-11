@@ -46,6 +46,8 @@ namespace ClickyApp
             backgroundWorker1.RunWorkerAsync();
             versionLabel.Text = String.Format("v{0}",System.Reflection.Assembly.GetExecutingAssembly().GetName().Version).Substring(0,6);
 
+            comboBox1.SelectedIndex = 0;
+
             AC.Start();
 
         }
