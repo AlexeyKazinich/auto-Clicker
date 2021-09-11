@@ -15,9 +15,11 @@ namespace ClickyApp
     public partial class Form1 : Form
     {
 
+        //get keyboard keystate
         [DllImport("user32.dll")]
         static extern short GetAsyncKeyState(Keys vKey);
 
+        //get mouse keystate
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         public static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
 
@@ -51,8 +53,8 @@ namespace ClickyApp
 
         private int getRandomInterval()
         {
-            int minInt = int.Parse(textBox1.Text);
-            int maxInt = int.Parse(textBoxMax.Text);
+            int minInt = int.Parse(textBoxMinInterval.Text);
+            int maxInt = int.Parse(textBoxMaxInterval.Text);
             int returnVal;
 
             Random rnd = new Random();
@@ -127,21 +129,116 @@ namespace ClickyApp
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
         {
-            if (!int.TryParse(textBox1.Text, out parsedValue))
+            Application.Exit();
+            Environment.Exit(0);
+        }
+
+        private void toolTip1_Popup(object sender, PopupEventArgs e)
+        {
+        }
+
+        private void checkBoxRandom_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxRandom.Checked == true)
+            {
+                //show
+                textBoxMaxInterval.Visible = true;
+                labelMax.Visible = true;
+
+                //rename interval(ms) to min interval
+                label1.Text = "Min interval (ms)";
+            }
+            else
+            {
+                textBoxMaxInterval.Visible = false;
+                labelMax.Visible = false;
+
+
+                //return the names
+                label1.Text = "interval (ms)";
+            }
+        }
+
+
+        private void changeStateColor()
+        {
+
+            if (Click == true)
+            {
+                labelState.Text = "ON";
+                labelState.ForeColor = Color.Lime;
+            }
+
+            else if (Click == false)
+            {
+                labelState.Text = "OFF";
+                labelState.ForeColor = Color.Red;
+            }
+        }
+
+        private void textBoxMinInterval_TextChanged(object sender, EventArgs e)
+        {
+            if (!int.TryParse(textBoxMinInterval.Text, out parsedValue))
             {
                 MessageBox.Show("Please enter an Integer");
                 return;
             }
             else
             {
-                interval = int.Parse(textBox1.Text);
+                interval = int.Parse(textBoxMinInterval.Text);
+            }
+        }        
+
+        private void textBoxMaxInterval_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+
+        private void textBoxMinInterval_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)13)
+            {
+                this.ActiveControl = label1;
+            }
+
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void textBoxMaxInterval_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == (char)13)
+            {
+                this.ActiveControl = label1;
+            }
+
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void comboBox1_TextChanged(object sender, EventArgs e)
+        {
+
             #region switch commands
             switch (comboBox1.Text)
             {
@@ -280,59 +377,6 @@ namespace ClickyApp
 
                     #endregion
 
-            }
-        }
-
-        private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-            Environment.Exit(0);
-        }
-
-        private void toolTip1_Popup(object sender, PopupEventArgs e)
-        {
-        }
-
-        private void checkBoxRandom_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBoxRandom.Checked == true)
-            {
-                //show
-                setMax.Visible = true;
-                textBoxMax.Visible = true;
-                labelMax.Visible = true;
-
-                //rename interval(ms) to min interval
-                label1.Text = "Min interval (ms)";
-                button1.Text = "set Min";
-            }
-            else
-            {
-                setMax.Visible = false;
-                textBoxMax.Visible = false;
-                labelMax.Visible = false;
-
-
-                //return the names
-                label1.Text = "interval (ms)";
-                button1.Text = "set Max";
-            }
-        }
-
-
-        private void changeStateColor()
-        {
-
-            if (Click == true)
-            {
-                labelState.Text = "ON";
-                labelState.ForeColor = Color.Lime;
-            }
-
-            else if (Click == false)
-            {
-                labelState.Text = "OFF";
-                labelState.ForeColor = Color.Red;
             }
         }
     }
