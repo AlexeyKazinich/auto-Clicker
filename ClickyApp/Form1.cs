@@ -26,7 +26,7 @@ namespace ClickyApp
 
         private const int LEFTUP = 0x0004;
         private const int LEFTDOWN = 0x0002;
-        public int interval = 100;
+        public int interval = 1;
         public bool Click = false;
         public int parsedValue;
         public Keys clickKey;

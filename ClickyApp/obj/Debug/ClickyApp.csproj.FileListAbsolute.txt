@@ -7,3 +7,4 @@ F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\obj\Debug\ClickyApp.cspro
 F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\obj\Debug\ClickyApp.csproj.CoreCompileInputs.cache
 F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\obj\Debug\ClickyApp.exe
 F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\obj\Debug\ClickyApp.pdb
+F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\obj\Debug\ClickyApp.csprojAssemblyReference.cache

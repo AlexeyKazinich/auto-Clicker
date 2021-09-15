@@ -62,7 +62,7 @@ namespace ClickyApp
             this.textBoxMinInterval.Name = "textBoxMinInterval";
             this.textBoxMinInterval.Size = new System.Drawing.Size(100, 20);
             this.textBoxMinInterval.TabIndex = 2;
-            this.textBoxMinInterval.Text = "100";
+            this.textBoxMinInterval.Text = "1";
             this.textBoxMinInterval.TextChanged += new System.EventHandler(this.textBoxMinInterval_TextChanged);
             this.textBoxMinInterval.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxMinInterval_KeyPress);
             // 
@@ -191,9 +191,8 @@ namespace ClickyApp
             this.versionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.versionLabel.Location = new System.Drawing.Point(409, 290);
             this.versionLabel.Name = "versionLabel";
-            this.versionLabel.Size = new System.Drawing.Size(48, 16);
+            this.versionLabel.Size = new System.Drawing.Size(0, 16);
             this.versionLabel.TabIndex = 11;
-            this.versionLabel.Text = "v1.0.0";
             this.versionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Form1
