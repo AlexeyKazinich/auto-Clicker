@@ -7,4 +7,6 @@ F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\obj\Debug\ClickyApp.cspro
 F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\obj\Debug\ClickyApp.csproj.CoreCompileInputs.cache
 F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\obj\Debug\ClickyApp.exe
 F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\obj\Debug\ClickyApp.pdb
-F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\obj\Debug\ClickyApp.csprojAssemblyReference.cache
+F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\bin\Debug\FontAwesome.Sharp.dll
+F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\obj\Debug\ClickyApp.csproj.AssemblyReference.cache
+F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\obj\Debug\ClickyApp.csproj.CopyComplete

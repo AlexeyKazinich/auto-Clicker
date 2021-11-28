@@ -10,6 +10,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+//REFERENCE: https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-mouse_event //BUTTON PRESSES
 namespace ClickyApp
 {
     public partial class Form1 : Form
@@ -24,9 +26,9 @@ namespace ClickyApp
         public static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
 
 
-        private const int LEFTUP = 0x0004;
-        private const int LEFTDOWN = 0x0002;
-        public int interval = 1;
+        private int BUTTONUP;
+        private int BUTTONDOWN;
+        public int interval;
         public bool Click = false;
         public int parsedValue;
         public Keys clickKey;
@@ -48,8 +50,185 @@ namespace ClickyApp
 
             comboBox1.SelectedIndex = 0;
 
+            loadSettings();
+
+
             AC.Start();
 
+        }
+
+        private void loadSettings()
+        {
+            //check keybind
+            comboBox1.SelectedIndex = (int)Properties.Settings.Default["keybindIndex"];
+            switch (Properties.Settings.Default["keybind"])
+            {
+                case "A":
+                    clickKey = Keys.A;
+                    break;
+                case "B":
+                    clickKey = Keys.B;
+                    break;
+                case "C":
+                    clickKey = Keys.C;
+                    break;
+                case "D":
+                    clickKey = Keys.D;
+                    break;
+                case "E":
+                    clickKey = Keys.E;
+                    break;
+                case "F":
+                    clickKey = Keys.F;
+                    break;
+                case "G":
+                    clickKey = Keys.G;
+                    break;
+                case "H":
+                    clickKey = Keys.H;
+                    break;
+                case "I":
+                    clickKey = Keys.I;
+                    break;
+                case "J":
+                    clickKey = Keys.J;
+                    break;
+                case "K":
+                    clickKey = Keys.K;
+                    break;
+                case "L":
+                    clickKey = Keys.L;
+                    break;
+                case "M":
+                    clickKey = Keys.M;
+                    break;
+                case "N":
+                    clickKey = Keys.N;
+                    break;
+                case "O":
+                    clickKey = Keys.O;
+                    break;
+                case "P":
+                    clickKey = Keys.P;
+                    break;
+                case "Q":
+                    clickKey = Keys.Q;
+                    break;
+                case "R":
+                    clickKey = Keys.R;
+                    break;
+                case "S":
+                    clickKey = Keys.S;
+                    break;
+                case "T":
+                    clickKey = Keys.T;
+                    break;
+                case "U":
+                    clickKey = Keys.U;
+                    break;
+                case "V":
+                    clickKey = Keys.V;
+                    break;
+                case "W":
+                    clickKey = Keys.W;
+                    break;
+                case "X":
+                    clickKey = Keys.X;
+                    break;
+                case "Y":
+                    clickKey = Keys.Y;
+                    break;
+                case "Z":
+                    clickKey = Keys.Z;
+                    break;
+                case "1":
+                    clickKey = Keys.D1;
+                    break;
+                case "2":
+                    clickKey = Keys.D2;
+                    break;
+                case "3":
+                    clickKey = Keys.D3;
+                    break;
+                case "4":
+                    clickKey = Keys.D4;
+                    break;
+                case "5":
+                    clickKey = Keys.D5;
+                    break;
+                case "6":
+                    clickKey = Keys.D6;
+                    break;
+                case "7":
+                    clickKey = Keys.D7;
+                    break;
+                case "8":
+                    clickKey = Keys.D8;
+                    break;
+                case "9":
+                    clickKey = Keys.D9;
+                    break;
+                case "0":
+                    clickKey = Keys.D0;
+                    break;
+                case "-":
+                    clickKey = Keys.OemMinus;
+                    break;
+                case "=":
+                    clickKey = Keys.Oemplus;
+                    break;
+                case ";":
+                    clickKey = Keys.OemSemicolon;
+                    break;
+                case "'":
+                    clickKey = Keys.OemQuotes;
+                    break;
+                case ",":
+                    clickKey = Keys.Oemcomma;
+                    break;
+                case ".":
+                    clickKey = Keys.OemPeriod;
+                    break;
+                case "/":
+                    clickKey = Keys.OemQuestion;
+                    break;
+                default:
+                    clickKey = Keys.Down;
+                    break;
+
+            }
+
+            //load delay settings
+            this.interval = (int)Properties.Settings.Default["delay"]; //update value
+            textBoxMinInterval.Text = Properties.Settings.Default["delay"].ToString(); // update textbox text
+
+            //load button to press
+            if((string)Properties.Settings.Default["MouseClick"] == "left")
+            {
+                this.BUTTONUP = 0x0004;
+                this.BUTTONDOWN = 0x0002;
+
+            }
+            else
+            {
+                this.BUTTONUP = 0x0010;
+                this.BUTTONDOWN = 0x0008;
+            }
+
+        }
+
+        private void saveNewSettings()
+        {
+            //save index
+            Properties.Settings.Default["keybindIndex"] = comboBox1.SelectedIndex;
+            //save keybind
+            Properties.Settings.Default["keybind"] = comboBox1.Text;
+            //save button press
+            Properties.Settings.Default["MouseClick"] = "left"; //Temporary
+            //save delay settings
+            Properties.Settings.Default["delay"] = interval;
+
+            Properties.Settings.Default.Save();
         }
 
 
@@ -74,17 +253,17 @@ namespace ClickyApp
                 {
                     if (checkBoxRandom.Checked == false)
                     {
-                        mouse_event(LEFTUP, 0, 0, 0, 0);
+                        mouse_event(BUTTONUP, 0, 0, 0, 0);
                         Thread.Sleep(1);
-                        mouse_event(LEFTDOWN, 0, 0, 0, 0);
+                        mouse_event(BUTTONDOWN, 0, 0, 0, 0);
                         Thread.Sleep(interval);
                     }
 
                     if (checkBoxRandom.Checked == true)
                     {
-                        mouse_event(LEFTUP, 0, 0, 0, 0);
+                        mouse_event(BUTTONUP, 0, 0, 0, 0);
                         Thread.Sleep(1);
-                        mouse_event(LEFTDOWN, 0, 0, 0, 0);
+                        mouse_event(BUTTONDOWN, 0, 0, 0, 0);
                         Thread.Sleep(getRandomInterval());
                     }
                 }
@@ -134,6 +313,7 @@ namespace ClickyApp
 
         private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
         {
+            saveNewSettings();
             Application.Exit();
             Environment.Exit(0);
         }
@@ -183,6 +363,7 @@ namespace ClickyApp
 
         private void textBoxMinInterval_TextChanged(object sender, EventArgs e)
         {
+            
             if (!int.TryParse(textBoxMinInterval.Text, out parsedValue))
             {
                 MessageBox.Show("Please enter an Integer");
@@ -192,6 +373,7 @@ namespace ClickyApp
             {
                 interval = int.Parse(textBoxMinInterval.Text);
             }
+            
         }        
 
         private void textBoxMaxInterval_TextChanged(object sender, EventArgs e)
