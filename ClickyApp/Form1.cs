@@ -25,6 +25,14 @@ namespace ClickyApp
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         public static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
 
+        
+        //drag application
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+
 
         private int BUTTONUP;
         private int BUTTONDOWN;
@@ -34,10 +42,17 @@ namespace ClickyApp
         public Keys clickKey;
         private bool released = true;
 
+        private Form activeForm;
+
 
         public Form1()
         {
             InitializeComponent();
+
+            this.Text = string.Empty;
+            this.ControlBox = false;
+            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+            this.FormBorderStyle = FormBorderStyle.None;
 
         }
 
@@ -47,6 +62,7 @@ namespace ClickyApp
             Thread AC = new Thread(AutoClick);
             backgroundWorker1.RunWorkerAsync();
             versionLabel.Text = String.Format("v{0}",System.Reflection.Assembly.GetExecutingAssembly().GetName().Version).Substring(0,6);
+            versionLabel.Location = new Point(panelTitleBar.Width-versionLabel.Width, versionLabel.Location.Y);
 
             comboBox1.SelectedIndex = 0;
 
@@ -57,10 +73,28 @@ namespace ClickyApp
 
         }
 
+        private void OpenChildForm(Form childForm, object btnSender)
+        {
+            if(activeForm!= null)
+            {
+                activeForm.Close();
+            }
+            activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            this.panelMainMenu.Controls.Add(childForm);
+            this.panelMainMenu.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+
+        }
+
         private void loadSettings()
         {
             //check keybind
             comboBox1.SelectedIndex = (int)Properties.Settings.Default["keybindIndex"];
+            #region switch cases
             switch (Properties.Settings.Default["keybind"])
             {
                 case "A":
@@ -196,7 +230,9 @@ namespace ClickyApp
                     clickKey = Keys.Down;
                     break;
 
+                
             }
+            #endregion
 
             //load delay settings
             this.interval = (int)Properties.Settings.Default["delay"]; //update value
@@ -278,7 +314,7 @@ namespace ClickyApp
         {
             while (true)
             {
-                if (checkBox1.Checked)
+                if (enableButton.Checked)
                 {
                     if ((GetAsyncKeyState(clickKey) < 0) && released == true && Click == true)
                     {
@@ -562,6 +598,59 @@ namespace ClickyApp
                     #endregion
 
             }
+        }
+
+        private void panelTitleBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        #region application close,maximize,minimize buttons
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            saveNewSettings();
+            Application.Exit();
+            Environment.Exit(0);
+        }
+        private void btnMaximize_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                WindowState = FormWindowState.Maximized;
+            }
+            else
+                WindowState = FormWindowState.Normal;
+
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            if(WindowState == FormWindowState.Normal || WindowState == FormWindowState.Maximized)
+            {
+                WindowState = FormWindowState.Minimized;
+            }
+        }
+
+
+        #endregion
+
+        private void MainMenuButton_Click(object sender, EventArgs e)
+        {
+            if(activeForm != null)
+            {
+                activeForm.Close();
+            }
+        }
+
+        private void SettingsButton_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Forms.FormSettings(), sender);
+        }
+
+        private void PatternClick_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Forms.FormClickPattern(), sender);
         }
     }
 }

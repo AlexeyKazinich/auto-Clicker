@@ -10,3 +10,6 @@ F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\obj\Debug\ClickyApp.pdb
 F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\bin\Debug\FontAwesome.Sharp.dll
 F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\obj\Debug\ClickyApp.csproj.AssemblyReference.cache
 F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\obj\Debug\ClickyApp.csproj.CopyComplete
+F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\obj\Debug\ClickyApp.Forms.FormSettings.resources
+F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\obj\Debug\ClickyApp.Forms.FormClickPattern.resources
+F:\Git_projects\C#\Auto Clicker\auto-Clicker\ClickyApp\obj\Debug\ClickyApp.csproj.SuggestedBindingRedirects.cache
