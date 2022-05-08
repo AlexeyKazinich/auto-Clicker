@@ -71,8 +71,8 @@ namespace ClickyApp
             this.textBoxMinInterval.Size = new System.Drawing.Size(100, 20);
             this.textBoxMinInterval.TabIndex = 2;
             this.textBoxMinInterval.Text = "1";
-            this.textBoxMinInterval.TextChanged += new System.EventHandler(this.textBoxMinInterval_TextChanged);
-            this.textBoxMinInterval.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxMinInterval_KeyPress);
+            this.textBoxMinInterval.TextChanged += new System.EventHandler(this.TextBoxMinInterval_TextChanged);
+            this.textBoxMinInterval.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxMinInterval_KeyPress);
             // 
             // label1
             // 
@@ -87,7 +87,7 @@ namespace ClickyApp
             // 
             // backgroundWorker1
             // 
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker1_DoWork);
             // 
             // comboBox1
             // 
@@ -145,12 +145,12 @@ namespace ClickyApp
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(100, 21);
             this.comboBox1.TabIndex = 4;
-            this.comboBox1.TextChanged += new System.EventHandler(this.comboBox1_TextChanged);
+            this.comboBox1.TextChanged += new System.EventHandler(this.ComboBox1_TextChanged);
             // 
             // toolTip1
             // 
             this.toolTip1.ShowAlways = true;
-            this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
+            this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.ToolTip1_Popup);
             // 
             // checkBoxRandom
             // 
@@ -163,7 +163,7 @@ namespace ClickyApp
             this.toolTip1.SetToolTip(this.checkBoxRandom, "Allows to generate random inputs using a max value\r\nand a min value given by the " +
         "user");
             this.checkBoxRandom.UseVisualStyleBackColor = true;
-            this.checkBoxRandom.CheckedChanged += new System.EventHandler(this.checkBoxRandom_CheckedChanged);
+            this.checkBoxRandom.CheckedChanged += new System.EventHandler(this.CheckBoxRandom_CheckedChanged);
             // 
             // labelState
             // 
@@ -213,8 +213,8 @@ namespace ClickyApp
             this.textBoxMaxInterval.Size = new System.Drawing.Size(100, 20);
             this.textBoxMaxInterval.TabIndex = 9;
             this.textBoxMaxInterval.Visible = false;
-            this.textBoxMaxInterval.TextChanged += new System.EventHandler(this.textBoxMaxInterval_TextChanged);
-            this.textBoxMaxInterval.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxMaxInterval_KeyPress);
+            this.textBoxMaxInterval.TextChanged += new System.EventHandler(this.TextBoxMaxInterval_TextChanged);
+            this.textBoxMaxInterval.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxMaxInterval_KeyPress);
             // 
             // versionLabel
             // 
@@ -340,7 +340,7 @@ namespace ClickyApp
             this.panelTitleBar.Name = "panelTitleBar";
             this.panelTitleBar.Size = new System.Drawing.Size(314, 80);
             this.panelTitleBar.TabIndex = 13;
-            this.panelTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseDown);
+            this.panelTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelTitleBar_MouseDown);
             // 
             // btnMinimize
             // 

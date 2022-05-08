@@ -37,7 +37,7 @@ namespace ClickyApp
         private int BUTTONUP;
         private int BUTTONDOWN;
         public int interval;
-        public bool Click = false;
+        public bool click = false;
         public int parsedValue;
         public Keys clickKey;
         private bool released = true;
@@ -66,7 +66,7 @@ namespace ClickyApp
 
             comboBox1.SelectedIndex = 0;
 
-            loadSettings();
+            LoadSettings();
 
 
             AC.Start();
@@ -90,7 +90,7 @@ namespace ClickyApp
 
         }
 
-        private void loadSettings()
+        private void LoadSettings()
         {
             //check keybind
             comboBox1.SelectedIndex = (int)Properties.Settings.Default["keybindIndex"];
@@ -253,7 +253,7 @@ namespace ClickyApp
 
         }
 
-        private void saveNewSettings()
+        private void SaveNewSettings()
         {
             //save index
             Properties.Settings.Default["keybindIndex"] = comboBox1.SelectedIndex;
@@ -268,7 +268,7 @@ namespace ClickyApp
         }
 
 
-        private int getRandomInterval()
+        private int GetRandomInterval()
         {
             int minInt = int.Parse(textBoxMinInterval.Text);
             int maxInt = int.Parse(textBoxMaxInterval.Text);
@@ -285,7 +285,7 @@ namespace ClickyApp
         {
             while (true)
             {
-                if (Click == true)
+                if (click == true)
                 {
                     if (checkBoxRandom.Checked == false)
                     {
@@ -300,7 +300,7 @@ namespace ClickyApp
                         mouse_event(BUTTONUP, 0, 0, 0, 0);
                         Thread.Sleep(1);
                         mouse_event(BUTTONDOWN, 0, 0, 0, 0);
-                        Thread.Sleep(getRandomInterval());
+                        Thread.Sleep(GetRandomInterval());
                     }
                 }
                 Thread.Sleep(2);
@@ -310,26 +310,26 @@ namespace ClickyApp
             }
         }
 
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             while (true)
             {
                 if (enableButton.Checked)
                 {
-                    if ((GetAsyncKeyState(clickKey) < 0) && released == true && Click == true)
+                    if ((GetAsyncKeyState(clickKey) < 0) && released == true && click == true)
                     {
-                        Click = false;
+                        click = false;
                         this.released = false;
 
                         //change text color
-                        changeStateColor();
+                        ChangeStateColor();
 
                     }
-                    if ((GetAsyncKeyState(clickKey) < 0) && released == true && Click == false)
+                    if ((GetAsyncKeyState(clickKey) < 0) && released == true && click == false)
                     {
-                        Click = true;
+                        click = true;
                         this.released = false;
-                        changeStateColor();
+                        ChangeStateColor();
                     }
 
                     if (GetAsyncKeyState(clickKey) >= 0)
@@ -349,16 +349,16 @@ namespace ClickyApp
 
         private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
         {
-            saveNewSettings();
+            SaveNewSettings();
             Application.Exit();
             Environment.Exit(0);
         }
 
-        private void toolTip1_Popup(object sender, PopupEventArgs e)
+        private void ToolTip1_Popup(object sender, PopupEventArgs e)
         {
         }
 
-        private void checkBoxRandom_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxRandom_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxRandom.Checked == true)
             {
@@ -381,23 +381,23 @@ namespace ClickyApp
         }
 
 
-        private void changeStateColor()
+        private void ChangeStateColor()
         {
 
-            if (Click == true)
+            if (click == true)
             {
                 labelState.Text = "ON";
                 labelState.ForeColor = Color.Lime;
             }
 
-            else if (Click == false)
+            else if (click == false)
             {
                 labelState.Text = "OFF";
                 labelState.ForeColor = Color.Red;
             }
         }
 
-        private void textBoxMinInterval_TextChanged(object sender, EventArgs e)
+        private void TextBoxMinInterval_TextChanged(object sender, EventArgs e)
         {
             
             if (!int.TryParse(textBoxMinInterval.Text, out parsedValue))
@@ -412,13 +412,13 @@ namespace ClickyApp
             
         }        
 
-        private void textBoxMaxInterval_TextChanged(object sender, EventArgs e)
+        private void TextBoxMaxInterval_TextChanged(object sender, EventArgs e)
         {
             
         }
 
 
-        private void textBoxMinInterval_KeyPress(object sender, KeyPressEventArgs e)
+        private void TextBoxMinInterval_KeyPress(object sender, KeyPressEventArgs e)
         {
             if(e.KeyChar == (char)13)
             {
@@ -437,7 +437,7 @@ namespace ClickyApp
             }
         }
 
-        private void textBoxMaxInterval_KeyPress(object sender, KeyPressEventArgs e)
+        private void TextBoxMaxInterval_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)13)
             {
@@ -456,7 +456,7 @@ namespace ClickyApp
             }
         }
 
-        private void comboBox1_TextChanged(object sender, EventArgs e)
+        private void ComboBox1_TextChanged(object sender, EventArgs e)
         {
 
             #region switch commands
@@ -600,7 +600,7 @@ namespace ClickyApp
             }
         }
 
-        private void panelTitleBar_MouseDown(object sender, MouseEventArgs e)
+        private void PanelTitleBar_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
@@ -609,7 +609,7 @@ namespace ClickyApp
         #region application close,maximize,minimize buttons
         private void btnClose_Click(object sender, EventArgs e)
         {
-            saveNewSettings();
+            SaveNewSettings();
             Application.Exit();
             Environment.Exit(0);
         }
